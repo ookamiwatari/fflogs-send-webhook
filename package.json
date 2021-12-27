@@ -1,0 +1,26 @@
+{
+  "name": "fflogs-send-webhook",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "test.js",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ookamiwatari/fflogs-send-webhook.git"
+  },
+  "keywords": [
+    "fflogs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ookamiwatari/fflogs-send-webhook/issues"
+  },
+  "homepage": "https://github.com/ookamiwatari/fflogs-send-webhook#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
