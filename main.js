@@ -1,8 +1,7 @@
-// heroku用に待ち受け
-var express = require('express');
-var app = express();
+// 環境変数の読み込み
+require('dotenv').config();
 
-app.get('/', function (req, res) {
-	res.send('Hello, World!');
-});
-app.listen(process.env.PORT || 8080);
+const gql = require('./lib/gql');
+const schedule = require('./lib/schedule');
+
+schedule.init();
