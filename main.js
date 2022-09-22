@@ -1,7 +1,15 @@
 // 環境変数の読み込み
-require('dotenv').config();
+require("dotenv").config();
 
-const gql = require('./lib/gql');
-const schedule = require('./lib/schedule');
+const webhook = require("./lib/webhook");
+const schedule = require("./lib/schedule");
 
-schedule.init();
+try {
+  schedule.init();
+} catch (error) {
+  console.log("schedule.init", error);
+  webhook.send(
+    process.env.NOTIFICATION_WEBHOOK_URL,
+    `schedule.init\n\n${error.message}`
+  );
+}
