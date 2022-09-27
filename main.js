@@ -1,15 +1,25 @@
 // 環境変数の読み込み
 require("dotenv").config();
 
-const webhook = require("./lib/webhook");
 const schedule = require("./lib/schedule");
+const mysql = require("./lib/mysql");
+const fflogs = require("./lib/fflogs");
+const express = require("./lib/express");
+const gql = require("./lib/gql");
 
-try {
-  schedule.init();
-} catch (error) {
-  console.log("schedule.init", error);
-  webhook.send(
-    process.env.NOTIFICATION_WEBHOOK_URL,
-    `schedule.init\n\n${error.message}`
-  );
+initAll();
+
+async function initAll() {
+  try {
+    await mysql.init();
+    await fflogs.updateAccessToken();
+    await gql.init();
+    await express.init();
+    schedule.init();
+  } catch (e) {
+    console.log("main.js - Error", e);
+    setTimeout(() => {
+      initAll();
+    }, 60000);
+  }
 }
