@@ -7,6 +7,7 @@ const fflogs = require("./lib/fflogs");
 const express = require("./lib/express");
 const gql = require("./lib/gql");
 
+express.init();
 initAll();
 
 async function initAll() {
@@ -14,7 +15,6 @@ async function initAll() {
     await mysql.init();
     await fflogs.updateAccessToken();
     await gql.init();
-    await express.init();
     schedule.init();
   } catch (e) {
     console.log("main.js - Error", e);
